@@ -20,6 +20,10 @@ class Scraper
 
   #pass in individual hero url from roster to scrape details page
   def scrape_hero_page(index_url)
+    html = open(index_url)
+    doc = Nokogiri::HTML(html)
+    hero = {}
+
   end
 
 

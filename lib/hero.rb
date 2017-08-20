@@ -3,8 +3,13 @@ class Hero
 
   @@all = []
 
-  def initialize
+  def initialize(name, url)
+    @name = name
+    @url = url
+  end
 
+  def self.all
+    @@all
   end
 
 end
