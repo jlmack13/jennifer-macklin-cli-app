@@ -22,7 +22,12 @@ class Scraper
   def scrape_hero_page(index_url)
     html = open(index_url)
     doc = Nokogiri::HTML(html)
-    hero = {}
+    hero = {
+      :overview => doc.css("#overview .hero-detail-description").text,
+      :abilities => doc.css(".hero-ability"), #this should be an array, how to process it? need to get the descriptions out too, should deal with in hero class
+      :biography => doc.css("#story .hero-bio"),
+    }
+
 
   end
 
