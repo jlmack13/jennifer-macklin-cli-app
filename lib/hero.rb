@@ -1,3 +1,7 @@
+require 'open-uri'
+require 'nokogiri'
+require 'pry'
+
 class Hero
   attr_accessor :name, :role, :url, :overview, :abilities, :biography, :quote
 
@@ -6,12 +10,44 @@ class Hero
   def initialize(name, url)
     @name = name
     @url = url
+    get_details(url)
     @@all << self
   end
 
-  def get_details(index_url) #how do I want to do this? I feel like I should keep the scraping in the scraper class (duh), but how to get the info here?
+  #get details by scraping hero page
+  def get_details(index_url)
+    html = open(index_url)
+    doc = Nokogiri::HTML(html)
 
+    #role
+    @role = doc.css(".hero-detail-role-name").text
+
+    #overview
+    @overview = doc.css("#overview .hero-detail-description").text
+
+    #abilities
+    @abilities = []
+    doc.css(".hero-ability").each do |ability|
+      hero_ability = ability.css(".hero-ability-descriptor .h5").text
+      hero_description = ability.css(".hero-ability-descriptor p").text
+      @abilities << {ability: hero_ability, description: hero_description}
+    end
+
+    #biography
+    @biography = []
+    doc.css("#story .hero-bio").each do |info|
+      hero_real_name = info.css(".name .hero-bio-copy").text
+      hero_occupation = info.css(".occupation .hero-bio-copy").text
+      hero_base = info.css(".base .hero-bio-copy").text
+      hero_affiliation = info.css(".affiliation .hero-bio.copy").text
+      @biography << {real_name: hero_real_name, occupation: hero_occupation, base: hero_base, affiliation: hero_affiliation}
+    end
+
+    #quote
+    @quote = doc.css(".hero-detail.wrapper .hero-detail.title").text
   end
+
+  #display hero details
 
   def self.all
     @@all
