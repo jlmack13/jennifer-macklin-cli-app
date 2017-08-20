@@ -15,6 +15,19 @@ class Scraper
   end
 
   #make each hero
+  def make_heroes
+    self.get_heroes.each do |hero|
+      hero = Hero.new
+      hero.name = hero.css(".portrait-title").text
+      hero.url = hero.css("a").attr["href"].value
+    end
+  end
 
   #print the list of heroes
+  def print_roster
+    self.make_heroes
+    Hero.all.each do |hero|
+      puts "#{hero.name}"
+    end
+  end
 end
