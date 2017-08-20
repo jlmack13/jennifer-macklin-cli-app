@@ -39,7 +39,7 @@ class Hero
       hero_real_name = info.css(".name .hero-bio-copy").text
       hero_occupation = info.css(".occupation .hero-bio-copy").text
       hero_base = info.css(".base .hero-bio-copy").text
-      hero_affiliation = info.css(".affiliation .hero-bio.copy").text
+      hero_affiliation = info.css(".affiliation").text
       @biography << {real_name: hero_real_name, occupation: hero_occupation, base: hero_base, affiliation: hero_affiliation}
     end
 
