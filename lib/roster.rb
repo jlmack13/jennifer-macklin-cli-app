@@ -2,8 +2,6 @@ require 'open-uri'
 require 'nokogiri'
 require 'pry'
 
-require_relative './hero.rb'
-
 class Roster
 
   def scrape_roster_page
@@ -19,7 +17,6 @@ class Roster
       hero = Hero.new(:name, :url)
     end
   end
-  binding.pry
   #display roster page
 
 end
