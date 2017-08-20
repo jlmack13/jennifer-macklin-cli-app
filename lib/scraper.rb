@@ -2,32 +2,27 @@ require 'open-uri'
 require 'nokogiri'
 require 'pry'
 
+require_relative './hero.rb'
+
 class Scraper
 
-  #get the page
-  def get_page
-    Nokogiri::HTML(open("https://playoverwatch.com/en-us/heroes/"))
-  end
-
-  #get the heroes
-  def get_heroes
-    self.get_page.css(".hero-portrait-detailed")
-  end
-
-  #make each hero
-  def make_heroes
-    self.get_heroes.each do |hero|
-      hero = Hero.new
-      hero.name = hero.css(".portrait-title").text
-      hero.url = hero.css("a").attr["href"].value
+  def scrape_roster_page
+    html = open("https://playoverwatch.com/en-us/heroes/")
+    heroes = []
+    doc = Nokogiri::HTML(html)
+    doc.css(".hero-portrait-detailed-container").each do |card|
+      hero_name = card.css(".container .portrait-title").text
+      hero_url = card.css("a").attr("href").value
+      heroes << {name: hero_name, url: hero_url}
     end
+    heroes
   end
 
-  #print the list of heroes
-  def print_roster
-    self.make_heroes
-    Hero.all.each do |hero|
-      puts "#{hero.name}"
-    end
+  #pass in individual hero url from roster to scrape details page
+  def scrape_hero_page(index_url)
   end
+
+
+
+
 end
