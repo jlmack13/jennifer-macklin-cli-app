@@ -15,9 +15,11 @@ class Roster
       hero_url = card.css("a").attr("href").value
       heroes << {name: hero_name, url: hero_url}
     end
-    heroes
+    heroes.each do |hero|
+      hero = Hero.new(:name, :url)
+    end
   end
-
+  binding.pry
   #display roster page
-  
+
 end

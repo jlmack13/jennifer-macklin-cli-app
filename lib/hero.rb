@@ -9,7 +9,7 @@ class Hero
 
   def initialize(name, url)
     @name = name
-    @url = url
+    @url = "https://playoverwatch.com" + url
     get_details(url)
     @@all << self
   end
@@ -44,9 +44,10 @@ class Hero
     end
 
     #quote
-    @quote = doc.css(".hero-detail.wrapper .hero-detail.title").text
+    @quote = doc.css("#story p.h4").text
   end
 
+  binding.pry
   #display hero details
 
   def self.all
