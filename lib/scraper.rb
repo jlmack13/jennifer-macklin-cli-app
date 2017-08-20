@@ -24,11 +24,24 @@ class Scraper
     doc = Nokogiri::HTML(html)
     hero = {
       :overview => doc.css("#overview .hero-detail-description").text,
-      :abilities => doc.css(".hero-ability"), #this should be an array, how to process it? need to get the descriptions out too, should deal with in hero class
-      :biography => doc.css("#story .hero-bio"),
+      :quote => doc.css(".hero-detail.title").text
     }
-
-
+    hero_abilities = {}
+    doc.css(".hero-ability").each do |ability|
+      hero_ability = ability.css(".hero-ability-descriptor .h5").text
+      hero_description = ability.css(".hero-ability-descriptor p").text
+      hero_abilities << {ability: hero_ability, description: hero_description}
+    end
+    hero << hero_abilities
+    hero_biography = {}
+    doc.css("#story .hero-bio").each do |info|
+      hero_real_name = info.css(".name .hero-bio-copy").text
+      hero_occupation = info.css(".occupation .hero-bio-copy").text
+      hero_base = info.css(".base .hero-bio-copy").text
+      hero_affiliation = info.css(".affiliation .hero-bio.copy").text
+      hero_biography << {real_name: hero_real_name, occupation: hero_occupation, base: hero_base, affiliation: hero_affiliation}
+    end
+    hero << hero_biography
   end
 
 
