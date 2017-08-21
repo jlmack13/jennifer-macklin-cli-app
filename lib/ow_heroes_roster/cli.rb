@@ -13,11 +13,11 @@ class OwHeroesRoster::CLI
   #ask user if they'd like to select a hero (by name or number?) for more details, reprint the list, or exit the program
   def menu
     puts "\n---***------ INSTRUCTIONS ------***---"
-    puts "\n1. To see details about a hero, enter the hero's name or number."
-    puts "2. To see this list again, type 'list'."
+    puts "\n1. Enter a hero's name to see their details."
+    puts "2. To see the roster again, type 'roster'."
     puts "3. To exit the program, type 'exit'."
     input = gets.strip.downcase
-    if input == 'list'
+    if input == 'roster'
       list_heroes
     elsif input == 'exit'
       exit
@@ -29,6 +29,9 @@ class OwHeroesRoster::CLI
   #display the details of the requested hero. do I want this here?
   def display_hero(input)
     #validate input (here or above?)
+
+    #case statement for heroes? or instead do a find_by_name type deal?
+    #Yeah that seems better, let's nix the numbers thing and go with that
   end
 
 end
