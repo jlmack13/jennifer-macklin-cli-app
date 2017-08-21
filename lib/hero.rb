@@ -3,13 +3,13 @@ require 'nokogiri'
 require 'pry'
 
 class Hero
-  attr_accessor :name, :role, :url, :overview, :abilities, :biography, :quote
+  attr_accessor :name, :role, :url, :path, :overview, :abilities, :biography, :quote
 
   @@all = []
 
-  def initialize(name, url)
+  def initialize(name, path)
     @name = name
-    @url = "https://playoverwatch.com" + url
+    @url = "https://playoverwatch.com#{path}"
     get_details(url)
     @@all << self
   end
@@ -46,7 +46,8 @@ class Hero
     #quote
     @quote = doc.css("#story p.h4").text
   end
-  
+
+  binding.pry
   #display hero details
 
   def self.all

@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
+require_relative './hero.rb'
 
 class Roster
 
@@ -16,7 +17,8 @@ class Roster
     heroes.each do |hero|
       hero = Hero.new(:name, :url)
     end
+
   end
   #display roster page
-
+ binding.pry
 end
