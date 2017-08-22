@@ -37,13 +37,13 @@ class Hero
     end
 
     #biography
-    @biography = []
+    @biography = {}
     doc.css("#story .hero-bio").each do |info|
       hero_real_name = info.css(".name .hero-bio-copy").text
       hero_occupation = info.css(".occupation .hero-bio-copy").text
       hero_base = info.css(".base .hero-bio-copy").text
       hero_affiliation = info.css(".affiliation").text
-      @biography << {real_name: hero_real_name, occupation: hero_occupation, base: hero_base, affiliation: hero_affiliation}
+      @biography = {real_name: hero_real_name, occupation: hero_occupation, base: hero_base, affiliation: hero_affiliation}
     end
 
     #quote
@@ -53,15 +53,21 @@ class Hero
   #display hero details
   def display_information
     get_details(url)
-    puts "Name: #{self.name}"
-    puts "Role: #{self.role}"
+    puts "\n---***------ #{self.name.upcase} ------***---"
+    puts "ROLE: #{self.role}"
     puts "-----------------------------"
-    puts "Overview:\n #{self.overview}"
+    puts "OVERVIEW:\n #{self.overview}"
     puts "-----------------------------"
-    puts "Abilities:\n"
+    puts "ABILITIES:\n"
     self.abilities.each do |ability|
       puts "*#{ability[:ability]}: #{ability[:description]}"
     end
+    puts "-----------------------------"
+    puts "BIOGRAPHY:\n"
+    self.biography.each_value {|value| puts "\t*#{value}" }
+    puts "-----------------------------"
+    puts "QUOTE: #{self.quote}"
+    puts "-----------------------------"
   end
 
   def self.all

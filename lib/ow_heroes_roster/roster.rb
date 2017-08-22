@@ -11,6 +11,11 @@ class Roster
     doc = Nokogiri::HTML(html)
     doc.css(".hero-portrait-detailed-container").each do |card|
       hero_name = card.css(".container .portrait-title").text
+      if hero_name.include?("ú")
+        hero_name = hero_name.gsub(/ú/, 'u')
+      elsif hero_name.include?("ö")
+        hero_name = hero_name.gsub(/ö/, 'o')
+      end
       hero_url = card.css("a").attr("href").value
       heroes << {name: hero_name, url: hero_url}
     end
@@ -19,6 +24,6 @@ class Roster
     end
 
   end
-  #display roster page
+
 
 end
