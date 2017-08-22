@@ -9,11 +9,11 @@ class OwHeroesRoster::CLI
   #print the list of heroes scraped from the site
   def list_heroes
     puts "\n---***------  HEROES ------***---"
-    puts "\n1. Doomfist"
-    puts "2. Sombra"
-    puts "3. Mei"
-    puts "4. D-Va"
-    puts "5. Mercy"
+    Roster.scrape_roster_page
+    #@heroes = Hero.all
+    Hero.all.each do |hero|
+      puts hero.name
+    end
     menu
   end
 

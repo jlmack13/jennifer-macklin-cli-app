@@ -10,7 +10,7 @@ class Hero
   def initialize(name, path)
     @name = name
     @url = "https://playoverwatch.com#{path}"
-    get_details(url)
+    #get_details(url)
     @@all << self
   end
 

@@ -5,7 +5,7 @@ require_relative './hero.rb'
 
 class Roster
 
-  def scrape_roster_page
+  def self.scrape_roster_page
     html = open("https://playoverwatch.com/en-us/heroes/")
     heroes = []
     doc = Nokogiri::HTML(html)
@@ -15,10 +15,10 @@ class Roster
       heroes << {name: hero_name, url: hero_url}
     end
     heroes.each do |hero|
-      hero = Hero.new(:name, :url)
+      hero = Hero.new(hero[:name], hero[:url])
     end
 
   end
   #display roster page
- binding.pry
+
 end
