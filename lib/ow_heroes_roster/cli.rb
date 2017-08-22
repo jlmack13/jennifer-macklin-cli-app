@@ -10,7 +10,10 @@ class OwHeroesRoster::CLI
   def list_heroes
     puts "\n---***------  HEROES ------***---"
     Roster.scrape_roster_page
-    Roster.display
+    #@heroes = Hero.all
+    Hero.all.each do |hero|
+      puts hero.name
+    end
   end
 
   #ask user if they'd like to select a hero (by name or number?) for more details, reprint the list, or exit the program
@@ -19,7 +22,7 @@ class OwHeroesRoster::CLI
     puts "\n1. Enter a hero's name to see their details."
     puts "2. To see the roster again, type 'roster'."
     puts "3. To exit the program, type 'exit'."
-    input = gets.strip.downcase
+    input = gets.strip.downcase.capitalize
     if input == 'roster'
       list_heroes
     elsif input == 'exit'
@@ -31,9 +34,10 @@ class OwHeroesRoster::CLI
   end
 
   #display the details of the requested hero. do I want this here?
-  def display_hero(name)
+  def display_hero(input)
     #use a find by name method to get the right hero and then display the information
-    
+    hero = Hero.find_by_name(input)
+    hero.display_information
   end
 
 end

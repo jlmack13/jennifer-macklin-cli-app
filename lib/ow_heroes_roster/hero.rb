@@ -15,7 +15,6 @@ class Hero
 
   def self.find_by_name(name)
     self.all.find{|hero| hero.name == name}
-    get_details(self.url)
   end
 
   #get details by scraping hero page
@@ -52,13 +51,17 @@ class Hero
   end
 
   #display hero details
-  def self.display_information
+  def display_information
     get_details(url)
     puts "Name: #{self.name}"
     puts "Role: #{self.role}"
     puts "-----------------------------"
     puts "Overview:\n #{self.overview}"
-    puts "Abilities:\n #{self.role}"
+    puts "-----------------------------"
+    puts "Abilities:\n"
+    self.abilities.each do |ability|
+      puts "*#{ability[:ability]}: #{ability[:description]}"
+    end
   end
 
   def self.all
