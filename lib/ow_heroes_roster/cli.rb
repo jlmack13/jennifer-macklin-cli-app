@@ -46,7 +46,7 @@ class OwHeroesRoster::CLI
       hero.display_information
       menu
     else
-      puts "Sorry could not find a hero by that name. Try again."
+      puts "\nSorry could not find a hero by that name. Please try again.".colorize(:green)
       menu
     end
   end

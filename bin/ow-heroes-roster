@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 require "./lib/ow_heroes_roster"
 
 OwHeroesRoster::CLI.new.call
