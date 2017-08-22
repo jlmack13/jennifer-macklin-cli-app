@@ -1,8 +1,6 @@
 # OwHeroesRoster
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ow_heroes_roster`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to the Overwatch Heroes Roster Gem! This gem will show you a list of all the current heroes available in the video game Overwatch. You can also see more detailed information about each individual hero if you wish.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+When you run the program you will see a list of instructions and the current roster of heroes. To view more information about a hero, type their name when prompted (alternatively, you can also type 'roster' to see the list again, or 'exit' if you are done with the program).
 
 ## Development
 
