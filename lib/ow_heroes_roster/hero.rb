@@ -10,8 +10,12 @@ class Hero
   def initialize(name, path)
     @name = name
     @url = "https://playoverwatch.com#{path}"
-    #get_details(url)
     @@all << self
+  end
+
+  def self.find_by_name(name)
+    self.all.find{|hero| hero.name == name}
+    get_details(self.url)
   end
 
   #get details by scraping hero page
@@ -48,6 +52,14 @@ class Hero
   end
 
   #display hero details
+  def self.display_information
+    get_details(url)
+    puts "Name: #{self.name}"
+    puts "Role: #{self.role}"
+    puts "-----------------------------"
+    puts "Overview:\n #{self.overview}"
+    puts "Abilities:\n #{self.role}"
+  end
 
   def self.all
     @@all
