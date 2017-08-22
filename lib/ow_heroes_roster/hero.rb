@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
+require 'colorize'
 
 class Hero
   attr_accessor :name, :role, :url, :path, :overview, :abilities, :biography, :quote
@@ -53,22 +54,26 @@ class Hero
   #display hero details
   def display_information
     get_details(url)
-    puts "\n---***------ #{self.name.upcase} ------***---"
-    puts "\n---***------ -------------------- ------***---"
-    puts "ROLE: #{self.role}"
-    puts "-----------------------------"
-    puts "OVERVIEW:\n #{self.overview}"
-    puts "-----------------------------"
-    puts "ABILITIES:\n"
+    puts "\n--------------------------------".colorize(:green)
+    puts "\n---          #{self.name.upcase}          ---".colorize(:green)
+    puts "\n--------------------------------".colorize(:green)
+    puts "\nROLE: #{self.role}".colorize(:yellow)
+    puts "--------------------------------".colorize(:magenta)
+    puts "OVERVIEW:".colorize(:yellow)
+    puts "#{self.overview}".colorize(:white)
+    puts "--------------------------------".colorize(:magenta)
+    puts "ABILITIES:\n".colorize(:yellow)
     self.abilities.each do |ability|
-      puts "*#{ability[:ability]}: #{ability[:description]}"
+      puts "*#{ability[:ability]}: #{ability[:description]}".colorize(:white)
     end
-    puts "-----------------------------"
-    puts "BIOGRAPHY:\n"
-    self.biography.each_value {|value| puts "\t*#{value}" }
-    puts "-----------------------------"
-    puts "QUOTE: #{self.quote}"
-    puts "-----------------------------"
+    puts "--------------------------------".colorize(:magenta)
+    puts "BIOGRAPHY:\n".colorize(:yellow)
+    self.biography.each_value {|value| puts "\t*#{value}".colorize(:white) }
+    puts "\n--------------------------------".colorize(:magenta)
+    if self.quote != ""
+      puts "QUOTE: #{self.quote}".colorize(:yellow)
+      puts "--------------------------------".colorize(:magenta)
+    end
   end
 
   def self.all

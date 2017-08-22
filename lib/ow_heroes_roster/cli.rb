@@ -2,6 +2,11 @@ class OwHeroesRoster::CLI
 
   def call
     puts "Welcome to the Overwatch Heroes Roster Gem!"
+    puts "\n----***------ INSTRUCTIONS ------***----"
+    puts "\n1. Enter a hero's name to see their details."
+    puts "2. To see the roster again, type 'roster'."
+    puts "3. To exit the program, type 'exit'."
+    puts "\n----------------------------------------"
     Roster.scrape_roster_page
     list_heroes
     menu
@@ -19,11 +24,7 @@ class OwHeroesRoster::CLI
 
   #ask user if they'd like to select a hero (by name or number?) for more details, reprint the list, or exit the program
   def menu
-    puts "\n---***------ INSTRUCTIONS ------***---"
-    puts "\n1. Enter a hero's name to see their details."
-    puts "2. To see the roster again, type 'roster'."
-    puts "3. To exit the program, type 'exit'."
-    puts "\n--------------------------------------"
+    print "\nWhat would you like to do? "
     input = gets.strip.upcase
     if input == 'ROSTER'
       list_heroes
