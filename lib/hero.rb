@@ -47,7 +47,6 @@ class Hero
     @quote = doc.css("#story p.h4").text
   end
 
-  binding.pry
   #display hero details
 
   def self.all
