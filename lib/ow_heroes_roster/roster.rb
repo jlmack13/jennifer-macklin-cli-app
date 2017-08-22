@@ -17,7 +17,7 @@ class Roster
         hero_name = hero_name.gsub(/ö/, 'o')
       end
       hero_url = card.css("a").attr("href").value
-      heroes << {name: hero_name, url: hero_url}
+      heroes << {name: hero_name.upcase, url: hero_url}
     end
     heroes.each do |hero|
       hero = Hero.new(hero[:name], hero[:url])

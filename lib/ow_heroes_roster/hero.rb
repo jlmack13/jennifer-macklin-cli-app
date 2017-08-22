@@ -54,6 +54,7 @@ class Hero
   def display_information
     get_details(url)
     puts "\n---***------ #{self.name.upcase} ------***---"
+    puts "\n---***------ -------------------- ------***---"
     puts "ROLE: #{self.role}"
     puts "-----------------------------"
     puts "OVERVIEW:\n #{self.overview}"
