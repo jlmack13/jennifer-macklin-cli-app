@@ -54,9 +54,11 @@ class Hero
   #display hero details
   def display_information
     get_details(url)
-    puts "\n--------------------------------".colorize(:green)
-    puts "\n---          #{self.name.upcase}          ---".colorize(:green)
-    puts "\n--------------------------------".colorize(:green)
+    puts "\n--------------------------------".colorize(:yellow)
+    print "\n**".colorize(:magenta)
+    print " #{self.name.upcase}".colorize(:white)
+    puts  " **".colorize(:magenta)
+    puts "\n--------------------------------".colorize(:yellow)
     puts "\nROLE: #{self.role}".colorize(:yellow)
     puts "--------------------------------".colorize(:magenta)
     puts "OVERVIEW:".colorize(:yellow)
